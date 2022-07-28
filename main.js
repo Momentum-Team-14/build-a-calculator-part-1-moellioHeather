@@ -6,8 +6,8 @@ class Calculator {
     }
 
 clear() {
-    this.currentOperand = ''
     this.previousOperand = ''
+    this.currentOperand = ''
     this.operation = undefined
 console.log("Hi")
 }
