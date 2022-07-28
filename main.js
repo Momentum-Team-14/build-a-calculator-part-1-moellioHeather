@@ -61,7 +61,7 @@ getDisplayNumber(number) {
     const integerDigits = parseFloat(stringNumber.split('.')[0])
     const decimalDigits = stringNumber.split('.')[1]
     let integerDisplay
-    if (isNan(integerDigits)) {
+    if (isNaN(integerDigits)) {
         integerDisplay = '' 
     } else {
         integerDisplay = integerDigits.toLocaleString('en', {
@@ -76,12 +76,10 @@ getDisplayNumber(number) {
 
 updateDisplay() {
     this.currentOperandTextElement.innerText = 
-    this.getDisplayNumber(this.currentOperand)
+        this.getDisplayNumber(this.currentOperand)
     if (this.operation != null) {
         this.previousOperandTextElement.innerText = 
             `${this.getDisplayNumber(this.previousOperand)} ${this.operation}`
-        } else {
-            this.previousOperandTextElement.innerText = ''
         }
     }
 }
@@ -93,6 +91,9 @@ const deleteButton = document.querySelector('[data-delete]')
 const allClearButton = document.querySelector('[data-all-clear]')
 const previousOperandTextElement = document.querySelector('[data-previous-operand]')
 const currentOperandTextElement = document.querySelector('[data-current-operand]')
+const clickSoundNumbers = document.getElementById('click-numbers')
+const clickSoundEquals = document.getElementById('click-equals')
+const clickSoundOperation = document.getElementById('click-operation')
 
 const calculator = new Calculator(previousOperandTextElement, currentOperandTextElement)
 
@@ -100,6 +101,8 @@ numberButtons.forEach(button => {
     button.addEventListener('click', () => {
         calculator.appendNumber(button.innerText)
         calculator.updateDisplay()
+        clickSoundNumbers.currentTime = 0
+        clickSoundNumbers.play()
     })
 })
 
@@ -107,12 +110,16 @@ operationButtons.forEach(button => {
     button.addEventListener('click', () => {
         calculator.chooseOperation(button.innerText)
         calculator.updateDisplay()
+        clickSoundOperation.currentTime = 0
+        clickSoundOperation.play()
     })
 })
 
 equalsButton.addEventListener('click', button => {
     calculator.compute()
     calculator.updateDisplay()
+    clickSoundEquals.currentTime = 0
+    clickSoundEquals.play()
 })
 
 allClearButton.addEventListener('click', button => {
@@ -124,3 +131,4 @@ deleteButton.addEventListener('click', button => {
     calculator.delete()
     calculator.updateDisplay()
 })
+
