@@ -9,6 +9,7 @@ clear() {
     this.currentOperand = ''
     this.previousOperand = ''
     this.operation = undefined
+console.log("Hi")
 }
 
 delete() {
@@ -78,7 +79,7 @@ updateDisplay() {
     this.currentOperandTextElement.innerText = 
         this.getDisplayNumber(this.currentOperand)
     if (this.operation != null) {
-        this.previousOperandTextElement.innerText = 
+        this.previousOperandTextElement.innerText =
             `${this.getDisplayNumber(this.previousOperand)} ${this.operation}`
         }
     }
@@ -94,6 +95,7 @@ const currentOperandTextElement = document.querySelector('[data-current-operand]
 const clickSoundNumbers = document.getElementById('click-numbers')
 const clickSoundEquals = document.getElementById('click-equals')
 const clickSoundOperation = document.getElementById('click-operation')
+const clickSoundACDelete = document.getElementById('click-ac-delete')
 
 const calculator = new Calculator(previousOperandTextElement, currentOperandTextElement)
 
@@ -125,10 +127,14 @@ equalsButton.addEventListener('click', button => {
 allClearButton.addEventListener('click', button => {
     calculator.clear()
     calculator.updateDisplay()
+    clickSoundACDelete.currentTime = 0
+    clickSoundACDelete.play()
 })
 
 deleteButton.addEventListener('click', button => {
     calculator.delete()
     calculator.updateDisplay()
+    clickSoundACDelete.currentTime = 0
+    clickSoundACDelete.play()
 })
 
