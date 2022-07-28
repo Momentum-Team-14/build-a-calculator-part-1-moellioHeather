@@ -1,0 +1,69 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-weight: normal;
+    border: 2px;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    background-position: center;
+    background-color: greenyellow 
+    /* background-image: url(https://www.freepptbackgrounds.net/wp-content/uploads/2014/01/Colorful-Circles-on-White-Backgrounds.jpg); */
+}
+
+.calculator-grid {
+    display: grid;
+    padding: 20px;
+    margin: 2% 30% 2% 30%;
+    justify-content: center;
+    align-content: center;
+    min-height: 100vh;
+    grid-template-columns: repeat(4, 100px);
+    grid-template-rows: minmax(120px, auto) repeat(5, 100px);
+    column-gap: 5px;
+    row-gap: 5px;
+    border: 10px solid yellow;
+    background-color: blue;
+    border-radius: 20px
+}
+
+.calculator-grid > button {
+    cursor: pointer;
+    font-size: 2rem;
+    border: 1px solid whitesmoke;
+    outline: none;
+    background-color: rgba(255, 255, 255, .6);
+    border-radius: 20px;
+}
+
+.calculator-grid > button:hover {
+    background-color: rgba(255, 255, 255, .95);
+}
+
+.span-two {
+    grid-column: span 2;
+}
+.output {
+    grid-column: 1 / -1;
+    background-color: rgba(0, 0, 0, .75);
+    display: flex; 
+    align-items: end;
+    justify-content: space-around;
+    flex-direction: column;
+    padding: 10px;
+    word-wrap: break-word;
+    word-break: break-all;
+    border-radius: 20px;
+    border: solid white;
+}
+
+.output .previous-operand {
+    color: rgba(255, 255, 255, .75);
+    font-size: 1.5rem;
+}
+.output .current-operand {
+    color: white;
+    font-size: 2.5rem;
+}
